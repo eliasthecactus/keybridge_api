@@ -1,0 +1,1893 @@
+{
+	"info": {
+		"_postman_id": "d0261c31-f214-4494-b249-fc2de39fed6b",
+		"name": "keybridge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20768791"
+	},
+	"item": [
+		{
+			"name": "General",
+			"item": [
+				{
+					"name": "Version",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/version",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"version"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ping",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/ping",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"ping"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Auth Ping",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0MDA0NTI0MiwianRpIjoiNGNlMGYxNTgtNTc0Yi00Zjk4LTlhYjYtNWY4OGExNzhhZDNhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IntcImlkXCI6IFwiOTUxZjZmZjUtZWVhZS00NGNjLThlMWYtY2JhNDI5MzcwNWU1XCIsIFwidHlwZVwiOiBcImNsaWVudFwiLCBcImRhdGFcIjoge1wiYXV0aF9pZFwiOiAyfX0iLCJuYmYiOjE3NDAwNDUyNDIsImNzcmYiOiJhM2IyNThmYy02NmMyLTRmMDgtYjJiMy05Y2RlN2I4OWQzZjciLCJleHAiOjE3NDAwNTk2NDJ9.7_0KY4GIKrQK9zOjIF47mUUyaz83rJLt0IVi9wFcWtE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/authping",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"authping"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"{{client_username}}\",\n    \"password\": \"{{client_password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/client/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login TwoFA",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0MDA0NTIwNSwianRpIjoiOTkxYmY5OTItMWY2YS00NWU1LWIxYjItZTdiMzdjZGVjODMxIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IntcImlkXCI6IFwiOTUxZjZmZjUtZWVhZS00NGNjLThlMWYtY2JhNDI5MzcwNWU1XCIsIFwidHlwZVwiOiBcImNsaWVudF9zZW1pXCIsIFwiZGF0YVwiOiB7XCJhdXRoX2lkXCI6IDJ9fSIsIm5iZiI6MTc0MDA0NTIwNSwiY3NyZiI6ImFjZmJmZWMwLTc1MzAtNDczYS1iNTg0LTg1ZDAyMzZjMzRmNSIsImV4cCI6MTc0MDA1OTYwNX0.A-1vuiyG2FJxQJ7eawPN__3diLwATC6TTyJ4PbbJp7E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": \"{{twofa_user}}\",\n    \"code\": \"{{twofa_code}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/client/auth/login/twofa",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"auth",
+								"login",
+								"twofa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Access",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/client/access/request",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"access",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Access",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"application_id\": 22\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/client/access/request",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"access",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Applications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/client/applications",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"applications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Launch check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/client/launch/12/check",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"launch",
+								"12",
+								"check"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Launch",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/client/launch/12",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"launch",
+								"12"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0MDA0NTI0MiwianRpIjoiNGNlMGYxNTgtNTc0Yi00Zjk4LTlhYjYtNWY4OGExNzhhZDNhIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IntcImlkXCI6IFwiOTUxZjZmZjUtZWVhZS00NGNjLThlMWYtY2JhNDI5MzcwNWU1XCIsIFwidHlwZVwiOiBcImNsaWVudFwiLCBcImRhdGFcIjoge1wiYXV0aF9pZFwiOiAyfX0iLCJuYmYiOjE3NDAwNDUyNDIsImNzcmYiOiJhM2IyNThmYy02NmMyLTRmMDgtYjJiMy05Y2RlN2I4OWQzZjciLCJleHAiOjE3NDAwNTk2NDJ9.7_0KY4GIKrQK9zOjIF47mUUyaz83rJLt0IVi9wFcWtE",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\",\n    \"name\": \"Admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/auth/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Initial",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/setup",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"setup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/auth/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"current_password\": \"{{password}}\",\n    \"new_password\": \"{{password}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/auth/change-password",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"auth",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "License key",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"license_key\": \"{{license_key}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/license",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"license"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "License key",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"license_key\": \"{{license_key}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/license",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"license"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "License key",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/license",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"license"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "License key",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/license/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"license",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Auth Source",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"name\": \"test\",\n        \"server_type\": \"ldap\",\n        \"description\": \"This is our test server, ldapio\",\n        \"ssl\": {{bind_ssl}},\n        \"port\": {{bind_port}},\n        \"host\": \"{{bind_host}}\",\n        \"bind_password\": \"{{bind_password}}\",\n        \"bind_user_dn\": \"{{bind_user_dn}}\",\n        \"base_dn\": \"{{bind_base_dn}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/authsource",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"authsource"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Auth Source",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/authsource",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"authsource"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Auth Source",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"defaultt\",\n    \"server_type\": \"ad\",\n    \"description\": \"this was just a basedn test\",\n    \"ssl\": {{bind_ssl}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/authsource/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"authsource",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Auth Source",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/authsource/8",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"authsource",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Auth Source",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"host\": \"{{bind_host}}\",\n        \"bind_password\": \"{{bind_password}}\",\n        \"bind_user_dn\": \"{{bind_user_dn}}\",\n        \"ssl\": {{bind_ssl}},\n        \"port\": {{bind_port}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/authsource/test",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"authsource",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Auth Source by ID",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"manualID\": \"2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/authsource/test",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"authsource",
+								"test"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Syslog Server",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Main Syslog Server\",\n    \"host\": \"192.178.0.133\",\n    \"port\": 514,\n    \"protocol\": \"udp\",\n    \"disabled\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/syslog",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"syslog"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Syslog Server",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/syslog",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"syslog"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Syslog Server",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"default\",\n    \"protocol\": \"udp\",\n    \"disabled\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/syslog/10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"syslog",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Syslog Server",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/syslog/11",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"syslog",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SMTP Server",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"host\": \"{{smtp_server}}\",\n    \"port\": {{smtp_port}},\n    \"username\": \"{{smtp_username}}\",\n    \"password\": \"{{smtp_password}}\",\n    \"security\": {{smtp_security}},\n    \"from_email\": \"{{smtp_from_email}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/smtp",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"smtp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SMTP Server",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/smtp",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"smtp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SMTP Server",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"default\",\n    \"security\": \"{{smtp_security}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/smtp/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"smtp",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SMTP Server",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/smtp/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"smtp",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Application",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test\",\n    \"check_hash\": true,\n    \"path\": [\n        \"C:\\\\Temp\\\\test.exe\",\n        \"/tmp/test\"\n    ],\n    \"hash\": [\n        \"hash1\",\n        \"hash2\"\n    ],\n    \"allow_request_access\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/application",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"application"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Application Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/eliasfrehner/Downloads/KeyBridge/assets/logo/v3/green_square.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/application/image/22",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"application",
+								"image",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Application Image",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/application/image/22",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"application",
+								"image",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Application (specific)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/application?id=1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"application"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Applications",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/application",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"application"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Application",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test3\",\n    \"path\": [\n        \"C:\\\\Temp\\\\Temp3.exe\",\n        \"/tmp/test3\"\n    ],\n    \"hash\": [\n        \"hash3\"\n    ],\n    \"allow_request_access\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/application/16",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"application",
+								"16"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Application",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/application/15",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"application",
+								"15"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Application Option Group",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/application/16/optiongroup",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"application",
+								"16",
+								"optiongroup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Application Option Group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test4\",\n    \"description\": \"This is a test group\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/application/16/optiongroup",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"application",
+								"16",
+								"optiongroup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Application Option Group",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/application/16/optiongroup/7",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"application",
+								"16",
+								"optiongroup",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Application Option Group",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/application/16/optiongroup/11",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"application",
+								"16",
+								"optiongroup",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Application Option Group Item",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/application/16/optiongroup/7/item",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"application",
+								"16",
+								"optiongroup",
+								"7",
+								"item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Application Option Group Item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test\",\n    \"value\": \"--arg_one test\",\n    \"sensitive\": true,\n    \"sensitive_mask\": \"sssssssssshhhhzezuefsa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/application/16/optiongroup/7/item",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"application",
+								"16",
+								"optiongroup",
+								"7",
+								"item"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Application Option Group Item",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test67\",\n    \"sensitive\": false,\n    \"sensitive_mask\": \"a\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/application/16/optiongroup/7/item/35",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"application",
+								"16",
+								"optiongroup",
+								"7",
+								"item",
+								"35"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Application Option Group Item",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/application/16/optiongroup/7/item/35",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"application",
+								"16",
+								"optiongroup",
+								"7",
+								"item",
+								"35"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "File Hash",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/Users/eliasfrehner/Downloads/DTR/Lernziele DTR I & II.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/file/hash",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"file",
+								"hash"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Logs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/logs?sort_field=timestamp&sort_order=desc&page=1&per_page=10&level=&search_string=token&start_date=2024-12-21&end_date=2025-01-15",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"logs"
+							],
+							"query": [
+								{
+									"key": "sort_field",
+									"value": "timestamp"
+								},
+								{
+									"key": "sort_order",
+									"value": "desc"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10"
+								},
+								{
+									"key": "level",
+									"value": ""
+								},
+								{
+									"key": "search_string",
+									"value": "token"
+								},
+								{
+									"key": "start_date",
+									"value": "2024-12-21"
+								},
+								{
+									"key": "end_date",
+									"value": "2025-01-15"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LDAP search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/authsource/search?auth_source_id=4&query=keybridge user",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"authsource",
+								"search"
+							],
+							"query": [
+								{
+									"key": "auth_source_id",
+									"value": "4"
+								},
+								{
+									"key": "query",
+									"value": "keybridge user"
+								},
+								{
+									"key": "search_type",
+									"value": "user",
+									"disabled": true
+								},
+								{
+									"key": "uuid",
+									"value": "6c497e3e-5a0d-103f-988a-0dd8ffcd12d2",
+									"disabled": true
+								},
+								{
+									"key": "username",
+									"value": "flast",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Access",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/access?auth_source_id=&object_uuid=&name=&access_to=&object_type=",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"access"
+							],
+							"query": [
+								{
+									"key": "auth_source_id",
+									"value": ""
+								},
+								{
+									"key": "object_uuid",
+									"value": ""
+								},
+								{
+									"key": "name",
+									"value": ""
+								},
+								{
+									"key": "access_to",
+									"value": ""
+								},
+								{
+									"key": "object_type",
+									"value": ""
+								},
+								{
+									"key": "application_id",
+									"value": "22",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Access",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"auth_source_id\": 4,\n        \"object_uuid\": \"b792e65e-5a0e-103f-988d-0dd8ffcd12d2\",\n        \"access_to\": 12\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/access",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"access"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Access",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/access/34",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"access",
+								"34"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to\": \"{{mail_recipient}}\",\n    \"caption\": \"Just a test\",\n    \"message\": \"Hello\\nThis is a test mail\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/mail",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"mail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Objects",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to\": \"{{mail_recipient}}\",\n    \"caption\": \"Just a test\",\n    \"message\": \"Hello\\nThis is a test mail\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/objects",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"objects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2FA",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to\": \"{{mail_recipient}}\",\n    \"caption\": \"Just a test\",\n    \"message\": \"Hello\\nThis is a test mail\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/twofa",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"twofa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2FA",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"host\": \"{{twofa_host}}\",\n    \"name\": \"{{twofa_name}}\",\n    \"type\": \"{{twofa_type}}\",\n    \"realm\": \"{{twofa_realm}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/twofa",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"twofa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2FA",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"host\": \"name\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/twofa/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"twofa",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2FA",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/admin/twofa/5",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"twofa",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2FA validate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user\": \"{{twofa_user}}\",\n    \"code\": \"{{twofa_code}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/admin/twofa/validate",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"admin",
+								"twofa",
+								"validate"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0MDA0NDMyNCwianRpIjoiMDEzY2JjNjMtNThiZC00ZWU3LWE4MzUtMzdkMWEwMzBlMjBlIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IntcImlkXCI6IFwiMlwiLCBcInR5cGVcIjogXCJhZG1pblwiLCBcImRhdGFcIjogbnVsbH0iLCJuYmYiOjE3NDAwNDQzMjQsImNzcmYiOiJmN2Y5MjdjZi1mMzc5LTQ1ZGQtOWI4ZC04ZGI0MjRkMDA5OWMiLCJleHAiOjE3NDAwNTg3MjR9.oZAqlg9FPb8wjTerR5SKILwMYEyMRaiwr9q7AkZi5Qw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "username",
+			"value": "admin",
+			"type": "string"
+		},
+		{
+			"key": "host",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "smtp_username",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "smtp_password",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "smtp_server",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "smtp_port",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "smtp_from_email",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "smtp_security",
+			"value": "SSL, STARTTLS, NONE",
+			"type": "string"
+		},
+		{
+			"key": "bind_user_dn",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "bind_password",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "bind_host",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "bind_port",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "bind_base_dn",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "bind_ssl",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "mail_recipient",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "client_username",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "client_password",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "license_key",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "twofa_host",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "twofa_name",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "twofa_type",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "twofa_user",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "twofa_code",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

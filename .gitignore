@@ -1,0 +1,10 @@
+.env
+old.py
+.vscode/
+__pycache__/
+data/
+venv/
+test.py
+test2.py
+*.DS_Store
+coverage.xml

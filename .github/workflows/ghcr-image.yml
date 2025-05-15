@@ -1,0 +1,114 @@
+name: Build & Push to GitHub Container Registry
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: keybridge
+          POSTGRES_PASSWORD: keybridgepass
+          POSTGRES_DB: keybridge_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U keybridge"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+
+      - name: Wait for Postgres to be Ready
+        run: |
+          until pg_isready -h localhost -p 5432; do
+            echo "Waiting for PostgreSQL..."
+            sleep 2
+          done
+
+      - name: Run Migrations
+        env:
+          KEYBRIDGE_DB_NAME: keybridge_test
+          KEYBRIDGE_DB_PASSWORD: keybridgepass
+          KEYBRIDGE_DB_USERNAME: keybridge
+          KEYBRIDGE_DB_HOST: localhost
+          KEYBRIDGE_DB_PORT: 5432
+        run: |
+          source venv/bin/activate
+          flask db init
+          flask db upgrade
+
+      - name: Run Tests
+        env:
+          KEYBRIDGE_DB_NAME: keybridge_test
+          KEYBRIDGE_DB_PASSWORD: keybridgepass
+          KEYBRIDGE_DB_USERNAME: keybridge
+          KEYBRIDGE_DB_HOST: localhost
+          KEYBRIDGE_DB_PORT: 5432
+          JWT_SECRET_KEY: "test_secret"
+        run: |
+          source venv/bin/activate
+          pytest --cov=services --cov-report=xml
+
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Extract Version from Dockerfile
+        run: |
+          echo "API_VERSION=$(grep 'ENV KEYBRIDGE_API_VERSION' Dockerfile | cut -d '=' -f2)" >> $GITHUB_ENV
+          BUILD=$(git rev-parse --short HEAD)
+          FULL_VERSION="${API_VERSION}+${BUILD}"
+          echo "FULL_VERSION=${FULL_VERSION}" >> $GITHUB_ENV
+          echo "BUILD=${BUILD}" >> $GITHUB_ENV
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set Up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build & Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/keybridge-api:latest
+            ghcr.io/${{ github.repository_owner }}/keybridge-api:${{ env.API_VERSION }}
+            ghcr.io/${{ github.repository_owner }}/keybridge-api:${{ env.BUILD }}
+          outputs: type=docker
+      - name: Verify Docker Image
+        run: |
+          docker pull ghcr.io/${{ github.repository_owner }}/keybridge-api:${{ env.API_VERSION }}
+          docker pull ghcr.io/${{ github.repository_owner }}/keybridge-api:${{ env.BUILD }}
